@@ -10,7 +10,8 @@ class Tableau1 extends Phaser.Scene{
         //bg 2 (tout au fond et très flou)
         this.load.image('bg2-terrain-2', 'assets/level/background-2/bg2-terrain-2.png');
         this.load.image('bg2-tree-2', 'assets/level/background-2/bg2-tree-2.png');
-
+        this.load.image('bg2-terrain1', 'assets/level/background-2/bg2-terrain-1.png');
+        this.load.image('bg2-tree-3', 'assets/level/background-2/bg2-tree-3.png');
         //bg 1 (gris légèrement flou)
         this.load.image('bg1-terrain-3', 'assets/level/background-1/bg-terrain-3.png');
 
@@ -18,6 +19,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
         this.load.image('gRight', 'assets/level/ground/g-right.png');
         this.load.image('gTree1', 'assets/level/ground/g-tree-1.png');
+        this.load.image('gMushroom', 'assets/level/ground/g-mushroom1.png');
 
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
@@ -62,6 +64,8 @@ class Tableau1 extends Phaser.Scene{
          */
         let bg2Terrain2=this.add.image(-100,100, 'bg2-terrain-2').setOrigin(0,0);
         this.bg2Container.add(bg2Terrain2);
+        let bg2terrain1=this.add.image(710,100, 'bg2-terrain1').setOrigin(0,0);
+        this.bg2Container.add(bg2terrain1);
         /**
          * Arbre dans bg2
          * @type {Phaser.GameObjects.Image}
@@ -69,6 +73,8 @@ class Tableau1 extends Phaser.Scene{
         let bg2Tree2=this.add.image(400,-50, 'bg2-tree-2').setOrigin(0,0);
         this.bg2Container.add(bg2Tree2);
         bg2Tree2.angle=-5; //pencher l'arbre de -5 degrès
+        let bg2Tree3=this.add.image(0,0, 'bg-tree-3').setOrigin(0,0);
+
 
         //--------------background 1 (gris) --------------------
 
@@ -96,7 +102,7 @@ class Tableau1 extends Phaser.Scene{
          * @type {Phaser.GameObjects.Image}
          */
         let tree1=this.add.image(300,350, 'gTree1').setOrigin(0,1);
-        tree1.setTintFill(0xFF0000); // pratique pour dbugger
+
         this.groundContainer.add(tree1);
         /**
          * Terrain 1
@@ -117,6 +123,10 @@ class Tableau1 extends Phaser.Scene{
          */
         let gMid3=this.add.image(gMid2.x+gMid2.width,350, 'gRight').setOrigin(0,0);
         this.groundContainer.add(gMid3);
+
+        let mushroom=this.add.image(160,270, 'gMushroom').setOrigin(0,0);
+
+        this.groundContainer.add(mushroom);
         /**
          * De l'herbe en textures qui se répète
          * @type {Phaser.GameObjects.TileSprite}
