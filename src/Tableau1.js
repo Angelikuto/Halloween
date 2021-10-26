@@ -12,8 +12,12 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('bg2-tree-2', 'assets/level/background-2/bg2-tree-2.png');
         this.load.image('bg2-terrain1', 'assets/level/background-2/bg2-terrain-1.png');
         this.load.image('bg2-tree-3', 'assets/level/background-2/bg2-tree-3.png');
+        this.load.image('bg2-tree-1', 'assets/level/background-2/bg2-tree-1.png');
         //bg 1 (gris légèrement flou)
         this.load.image('bg1-terrain-3', 'assets/level/background-1/bg-terrain-3.png');
+        this.load.image('bg1-terrain-1', 'assets/level/background-1/bg-terrain-1.png');
+        this.load.image('bg-tree-1', 'assets/level/background-1/bg-tree-1.png');
+
 
         //ground (premier plan noir)
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
@@ -73,7 +77,15 @@ class Tableau1 extends Phaser.Scene{
         let bg2Tree2=this.add.image(400,-50, 'bg2-tree-2').setOrigin(0,0);
         this.bg2Container.add(bg2Tree2);
         bg2Tree2.angle=-5; //pencher l'arbre de -5 degrès
-        let bg2Tree3=this.add.image(0,0, 'bg-tree-3').setOrigin(0,0);
+        let bg2Tree3=this.add.image(0,-100, 'bg2-tree-3').setOrigin(0,0);
+        this.bg2Container.add(bg2Tree3);
+        bg2Tree3.angle=-10; //pencher l'arbre de -5 degrès
+        let bg2Tree1=this.add.image(710,-40, 'bg2-tree-1').setOrigin(0,0);
+        this.bg2Container.add(bg2Tree1);
+        bg2Tree1.angle=-10; //pencher l'arbre de -5 degrès
+
+
+
 
 
         //--------------background 1 (gris) --------------------
@@ -84,11 +96,23 @@ class Tableau1 extends Phaser.Scene{
          */
         this.bg1Container=this.add.container(0,0);
         /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bgtree1=this.add.image(0,-120, 'bg-tree-1').setOrigin(0,0);
+        this.bg1Container.add(bgtree1);
+
+
+        /**
          * Terrain
          * @type {Phaser.GameObjects.Image}
          */
         let bg1Terrain3=this.add.image(-300,200, 'bg1-terrain-3').setOrigin(0,0);
         this.bg1Container.add(bg1Terrain3);
+        let bg1Terrain1=this.add.image(700,200, 'bg1-terrain-1').setOrigin(0,0);
+        this.bg1Container.add(bg1Terrain1);
+
+
 
         //-------------ground (premier plan noir)---------------------------
 
