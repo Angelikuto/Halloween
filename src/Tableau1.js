@@ -99,7 +99,7 @@ class Tableau1 extends Phaser.Scene{
          * Arbre
          * @type {Phaser.GameObjects.Image}
          */
-        let bgtree1=this.add.image(0,-120, 'bg-tree-1').setOrigin(0,0);
+        let bgtree1=this.add.image(0,-100, 'bg-tree-1').setOrigin(0,0);
         this.bg1Container.add(bgtree1);
 
 
