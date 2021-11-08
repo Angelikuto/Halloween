@@ -35,8 +35,12 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gWater', 'assets/level/ground/g-water.png');
         this.load.image('gBox', 'assets/level/ground/g-box-2.png');
         this.load.image('gVine', 'assets/level/ground/g-vine-a.png');
-        this.load.image('z6', 'assets/zombies/z6.png');
         this.load.image('gRight2', 'assets/level/ground/g-right.png');
+        this.load.image('z6', 'assets/zombie/z6.png');
+        this.load.image('Grassz', 'assets/level/ground/g-grass-4.png');
+        this.load.image('Grassz2', 'assets/level/ground/g-grass-4.png');
+        this.load.image('Ftree1', 'assets/level/ground/g-fellen-tree-1.png');
+
 
 
 
@@ -155,6 +159,16 @@ class Tableau1 extends Phaser.Scene{
         this.groundContainer.add(tree1);
         tree1.setScale(0.7)
         tree1.angle=-10
+
+        let Ftree1=this.add.image(1130,320, 'Ftree1').setOrigin(0,0);
+        this.groundContainer.add(Ftree1);
+        Ftree1.setScale(1)
+        Ftree1.angle=-2
+
+
+
+
+
         /**
          * Terrain 1
          * @type {Phaser.GameObjects.Image}
@@ -185,6 +199,16 @@ class Tableau1 extends Phaser.Scene{
          */
         let gWater=this.add.image(425,385, 'gWater').setOrigin(0,0);
         this.groundContainer.add(gWater);
+        /**
+         *
+         * Zombie
+         *  @type {Phaser.GameObjects.TileSprite}
+         */
+        let z6=this.add.image(930,280, 'z6').setOrigin(0,0);
+        z6.setScale(0.6)
+        this.groundContainer.add(z6);
+
+
         /**
          * Stone
          * @type {Phaser.GameObjects.Image}
@@ -237,16 +261,10 @@ class Tableau1 extends Phaser.Scene{
         let gGrass6=this.add.image(875,325, 'g-grass-5').setOrigin(0,0);
         this.groundContainer.add(gGrass6);
 
-
-
-        /**
-         *
-         * Zombie
-         *  @type {Phaser.GameObjects.TileSprite}
-         */
-        let z6=this.add.image(525,293, 'z6').setOrigin(0,0);
-        z6.setScale(0.6)
-        this.groundContainer.add(z6);
+        let Grassz=this.add.image(980,320, 'g-grass-4').setOrigin(0,0);
+        this.groundContainer.add(Grassz);
+        let Grassz2=this.add.image(1100,320, 'g-grass-4').setOrigin(0,0);
+        this.groundContainer.add(Grassz2);
 
 
         /**
@@ -331,10 +349,10 @@ class Tableau1 extends Phaser.Scene{
             switch (kevent.keyCode)
             {
                 case Phaser.Input.Keyboard.KeyCodes.RIGHT:
-                    me.speed=1;
+                    me.speed=5;
                     break;
                 case Phaser.Input.Keyboard.KeyCodes.LEFT:
-                    me.speed=-1;
+                    me.speed=-5;
                     break;
             }
         });
