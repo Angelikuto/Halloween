@@ -160,6 +160,12 @@ class Tableau1 extends Phaser.Scene{
             //ici on va calculer les positions
         let gMid1=this.add.image(-150,350, 'gMid').setOrigin(0,0);
         this.groundContainer.add(gMid1);
+        let zombie1=this.add.image(525,293, 'zombie1').setOrigin(0,0);
+        zombie1.setScale(0.6)
+        zombie1.angle=5
+        this.groundContainer.add(zombie1);
+
+
         /**
          * Herbe marine
          * @type {Phaser.GameObjects.TileSprite}
@@ -251,11 +257,6 @@ class Tableau1 extends Phaser.Scene{
         gBox.setScale(0.6)
         gBox.angle=5
         this.groundContainer.add(gBox);
-        let zombie1=this.add.image(525,293, 'gBox').setOrigin(0,0);
-        zombie1.setScale(0.6)
-        zombie1.angle=5
-        this.groundContainer.add(gBox);
-
 
         /**
          * Vine
