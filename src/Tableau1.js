@@ -35,6 +35,8 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gWater', 'assets/level/ground/g-water.png');
         this.load.image('gBox', 'assets/level/ground/g-box-2.png');
         this.load.image('gVine', 'assets/level/ground/g-vine-a.png');
+        this.load.image('zombie1', 'assets/zombies/z6.png');
+
 
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
@@ -249,6 +251,12 @@ class Tableau1 extends Phaser.Scene{
         gBox.setScale(0.6)
         gBox.angle=5
         this.groundContainer.add(gBox);
+        let zombie1=this.add.image(525,293, 'gBox').setOrigin(0,0);
+        zombie1.setScale(0.6)
+        zombie1.angle=5
+        this.groundContainer.add(gBox);
+
+
         /**
          * Vine
          * @type {Phaser.GameObjects.TileSprite}
@@ -258,7 +266,7 @@ class Tableau1 extends Phaser.Scene{
         this.groundContainer.add(gVine);
         let gVine2=this.add.tileSprite(600,-3, 20, 250,'gVine').setOrigin(0,0);
         gVine2.setScale(0.5)
-        this.groundContainer.add(gVin2);
+
         /**
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
