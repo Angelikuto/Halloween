@@ -35,7 +35,9 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gWater', 'assets/level/ground/g-water.png');
         this.load.image('gBox', 'assets/level/ground/g-box-2.png');
         this.load.image('gVine', 'assets/level/ground/g-vine-a.png');
-        this.load.image('zombie1', 'assets/zombies/z6.png');
+        this.load.image('z6', 'assets/zombies/z6.png');
+        this.load.image('gRight2', 'assets/level/ground/g-right.png');
+
 
 
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
@@ -160,10 +162,6 @@ class Tableau1 extends Phaser.Scene{
             //ici on va calculer les positions
         let gMid1=this.add.image(-150,350, 'gMid').setOrigin(0,0);
         this.groundContainer.add(gMid1);
-        let zombie1=this.add.image(525,293, 'zombie1').setOrigin(0,0);
-        zombie1.setScale(0.6)
-        zombie1.angle=5
-        this.groundContainer.add(zombie1);
 
 
         /**
@@ -208,6 +206,9 @@ class Tableau1 extends Phaser.Scene{
          */
         let gMid3=this.add.image(gMid2.x+gMid2.width,350, 'gRight').setOrigin(0,0);
         this.groundContainer.add(gMid3);
+        let gRight2=this.add.image(975,364, 'gRight2').setOrigin(0,0);
+        this.groundContainer.add(gRight2);
+
         /**
          * Terrain 4
          * @type {Phaser.GameObjects.Image}
@@ -235,7 +236,21 @@ class Tableau1 extends Phaser.Scene{
 
         let gGrass6=this.add.image(875,325, 'g-grass-5').setOrigin(0,0);
         this.groundContainer.add(gGrass6);
+
+
+
         /**
+         *
+         * Zombie
+         *  @type {Phaser.GameObjects.TileSprite}
+         */
+        let z6=this.add.image(525,293, 'z6').setOrigin(0,0);
+        z6.setScale(0.6)
+        this.groundContainer.add(z6);
+
+
+        /**
+         *
          * Champignon
          * @type {Phaser.GameObjects.TileSprite}
          */
