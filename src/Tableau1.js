@@ -18,6 +18,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('bg1-terrain-1', 'assets/level/background-1/bg-terrain-1.png');
         this.load.image('bg-tree-1', 'assets/level/background-1/bg-tree-1.png');
         this.load.image('bg-tree-3', 'assets/level/background-1/bg-tree-3.png');
+        this.load.image('bg-mush-2', 'assets/level/background-1/bg-mushroom-2.png');
 
 
         //ground (premier plan noir)
@@ -57,6 +58,11 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('filterFilm4', 'assets/level/filters/bloody/frame3.png');
         this.load.image('filterFilm5', 'assets/level/filters/bloody/frame1.png');
         this.load.image('filterFilm6', 'assets/level/filters/bloody/frame2.png');
+
+        this.load.image('filterW1', 'assets/level/weather/rain/frame1.png');
+        this.load.image('filterW2', 'assets/level/weather/rain/frame2.png');
+        this.load.image('filterW3', 'assets/level/weather/rain/frame3.png');
+
 
 
         //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
@@ -127,6 +133,12 @@ class Tableau1 extends Phaser.Scene{
         let bgtree3=this.add.image(150,-250, 'bg-tree-3').setOrigin(0,0);
         this.bg1Container.add(bgtree3);
 
+        /**
+         * champignons
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bgmush2=this.add.image(0,0, 'bg-mush-2').setOrigin(0,0);
+        this.bg1Container.add(bgmush2);
 
         /**
          * Terrain
@@ -134,13 +146,11 @@ class Tableau1 extends Phaser.Scene{
          */
         let bg1Terrain3=this.add.image(-300,200, 'bg1-terrain-3').setOrigin(0,0);
         this.bg1Container.add(bg1Terrain3);
-        let bg1Terrain1=this.add.image(700,200, 'bg1-terrain-1').setOrigin(0,0);
-        this.bg1Container.add(bg1Terrain1);
 
-        /**
-         * champignons
-         * @type {Phaser.GameObjects.Image}
-         */
+
+
+
+
 
 
 
@@ -342,6 +352,23 @@ class Tableau1 extends Phaser.Scene{
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
+
+        this.filterFilm = this.add.sprite(0, 0, 'filterW').setOrigin(0,0);
+        //animation de 3 images
+        this.anims.create({
+            key: 'filterW',
+            frames: [
+                {key:'filterW1'},
+                {key:'filterW2'},
+                {key:'filterW3'},
+
+            ],
+            frameRate: 16,
+            repeat: -1
+        });
+        this.filterFilm.play('filterW');
+
+
         this.filterFilm = this.add.sprite(0, 0, 'filterFilm1').setOrigin(0,0);
         //animation de 3 images
         this.anims.create({
@@ -356,6 +383,7 @@ class Tableau1 extends Phaser.Scene{
             repeat: -1
         });
         this.filterFilm.play('film');
+
 
 
 
