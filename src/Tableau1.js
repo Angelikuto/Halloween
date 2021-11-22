@@ -53,6 +53,10 @@ class Tableau1 extends Phaser.Scene{
         for(let i=1;i<=5;i++){
             this.load.image('g-grass-'+i, 'assets/level/ground/g-grass-'+i+'.png');
         }
+        for(let i=1;i<=10;i++){
+            this.load.image('idle2'+ i, 'Characters/boy/boy_style_5/PNG/idle2/Layer-' + i + '.png');
+        }
+
 
         //filtre film TODO élève : faire une boucle à la place des 3 lignes qui suivent
         this.load.image('filterFilm4', 'assets/level/filters/bloody/frame3.png');
@@ -62,6 +66,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('filterW1', 'assets/level/weather/rain/frame1.png');
         this.load.image('filterW2', 'assets/level/weather/rain/frame2.png');
         this.load.image('filterW3', 'assets/level/weather/rain/frame3.png');
+
 
 
 
@@ -352,7 +357,15 @@ class Tableau1 extends Phaser.Scene{
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
-
+        this.boy = this.add.sprite(0, 0, 'idle2').setOrigin(0,0);
+        //animation perso idle2
+        this.anims.create({
+            key: 'boy',
+            frames: this.getFrames('idle2', 10),
+            frameRate: 16,
+            repeat: -1
+        });
+        this.boy.play('boy');
         this.filterFilm = this.add.sprite(0, 0, 'filterW').setOrigin(0,0);
         //animation de 3 images
         this.anims.create({
@@ -383,8 +396,10 @@ class Tableau1 extends Phaser.Scene{
             repeat: -1
         });
         this.filterFilm.play('film');
-
-
+        /**
+         * filtre type film au premier plan
+         * @type {Phaser.GameObjects.Sprite}
+         */
 
 
 
@@ -406,6 +421,14 @@ class Tableau1 extends Phaser.Scene{
         this.bg2Container.scrollFactorX=0.2;
         this.bg1Container.scrollFactorX=0.4;
         this.groundContainer.scrollFactorX=1;
+
+    }
+    getFrames(prefix,length){
+        let frames=[];
+        for (let i=1;i<=length;i++){
+            frames.push({key: prefix+i});
+        }
+        return frames;
     }
     /**
      * Définit ce qui se passe quand on appuie ou relache une touche du clavier
