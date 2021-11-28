@@ -7,6 +7,19 @@ class Tableau1 extends Phaser.Scene{
      * Précharge les assets
      */
     preload(){
+        for(let i=1;i<=10;i++){
+            this.load.image('idle'+ i, 'Characters/boy/boy_style_5/PNG/idle2/Layer-' + i + '.png');
+        }
+        for(let i=1;i<=6;i++){
+            this.load.image('ennemyIdle'+ i, 'Characters/enemy 2/PNG/idle/Layer-' +i+'.png');
+        }
+        for(let i=1;i<=8;i++){
+            this.load.image('ennemyattack'+ i, 'Characters/enemy 2/PNG/attack/Layer-' + i + '.png');
+        }
+
+        for(let i=1;i<=3;i++){
+            this.load.image('trap'+ i, 'Characters/trap 1/PNG/close/Layer-' + i + '.png');
+        }
         //bg 2 (tout au fond et très flou)
         this.load.image('bg2-terrain-2', 'assets/level/background-2/bg2-terrain-2.png');
         this.load.image('bg2-tree-2', 'assets/level/background-2/bg2-tree-2.png');
@@ -53,15 +66,14 @@ class Tableau1 extends Phaser.Scene{
         for(let i=1;i<=5;i++){
             this.load.image('g-grass-'+i, 'assets/level/ground/g-grass-'+i+'.png');
         }
-        for(let i=1;i<=10;i++){
-            this.load.image('idle2'+ i, 'Characters/boy/boy_style_5/PNG/idle2/Layer-' + i + '.png');
-        }
+
 
 
         //filtre film TODO élève : faire une boucle à la place des 3 lignes qui suivent
-        this.load.image('filterFilm4', 'assets/level/filters/bloody/frame3.png');
-        this.load.image('filterFilm5', 'assets/level/filters/bloody/frame1.png');
-        this.load.image('filterFilm6', 'assets/level/filters/bloody/frame2.png');
+        for(let i=1;i<=3;i++) {
+            this.load.image('filterFilm' + i, 'assets/level/filters/bloody/frame' + i + '.png');
+        }
+
 
         this.load.image('filterW1', 'assets/level/weather/rain/frame1.png');
         this.load.image('filterW2', 'assets/level/weather/rain/frame2.png');
@@ -74,7 +86,13 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('bg-animation-a', 'assets/level/background-2/bg-animation/bg-animation-a.png');
 
     }
-
+    getFrames(prefix,length){
+        let frames=[];
+        for (let i=1;i<=length;i++){
+            frames.push({key: prefix+i});
+        }
+        return frames;
+    }
     /**
      * Crée la scène
      * TODO élèves : reproduire à l'identique assets/level/00-preview-example/sample1.jpg
@@ -158,7 +176,7 @@ class Tableau1 extends Phaser.Scene{
 
 
 
-
+        this.boy = this.add.sprite(0, 60, 'idle1').setOrigin(0,0);
 
 
         //-------------ground (premier plan noir)---------------------------
@@ -195,6 +213,7 @@ class Tableau1 extends Phaser.Scene{
         this.groundContainer.add(Ftree1);
         Ftree1.setScale(1)
         Ftree1.angle=-2
+
 
 
 
@@ -357,16 +376,8 @@ class Tableau1 extends Phaser.Scene{
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
-        this.boy = this.add.sprite(0, 0, 'idle2').setOrigin(0,0);
-        //animation perso idle2
-        this.anims.create({
-            key: 'boy',
-            frames: this.getFrames('idle2', 10),
-            frameRate: 16,
-            repeat: -1
-        });
-        this.boy.play('boy');
-        this.filterFilm = this.add.sprite(0, 0, 'filterW').setOrigin(0,0);
+
+        this.filterRain = this.add.sprite(0, 0, 'filterW').setOrigin(0,0);
         //animation de 3 images
         this.anims.create({
             key: 'filterW',
@@ -374,24 +385,19 @@ class Tableau1 extends Phaser.Scene{
                 {key:'filterW1'},
                 {key:'filterW2'},
                 {key:'filterW3'},
-
             ],
             frameRate: 16,
-            repeat: -1
+            repeat: -1,
         });
-        this.filterFilm.play('filterW');
+        this.filterRain.play('filterW');
 
 
-        this.filterFilm = this.add.sprite(0, 0, 'filterFilm1').setOrigin(0,0);
+
+        this.filterFilm = this.add.sprite(0, 0, 'filterFilm').setOrigin(0,0);
         //animation de 3 images
         this.anims.create({
             key: 'film',
-            frames: [
-                {key:'filterFilm4'},
-                {key:'filterFilm5'},
-                {key:'filterFilm6'},
-
-            ],
+            frames:this.getFrames('filterFilm',3),
             frameRate: 16,
             repeat: -1
         });
@@ -401,6 +407,51 @@ class Tableau1 extends Phaser.Scene{
          * @type {Phaser.GameObjects.Sprite}
          */
 
+        //animation perso idle2
+        this.anims.create({
+            key: 'boy',
+            frames: this.getFrames('idle', 10),
+            frameRate: 16,
+            repeat: -1
+        });
+        this.boy2 = this.add.sprite(500, 0, 'ennemyIdle').setOrigin(0,0);
+        this.anims.create({
+            key: 'Eidle',
+            frames: this.getFrames('ennemyIdle', 6),
+            frameRate: 16,
+            repeat: -1
+        });
+
+
+        this.ennemy = this.add.sprite(1000, 0, 'ennemyattack').setOrigin(0,0);
+        this.anims.create({
+            key: 'Ennemy',
+            frames: this.getFrames('ennemyattack', 6),
+            frameRate: 11,
+            repeat: -1
+
+        });
+
+        this.trap = this.add.sprite(1585, 200,'trap').setOrigin(0,0);
+        this.anims.create({
+            key: 'Trap',
+            frames: this.getFrames('trap', 3),
+            frameRate: 10,
+            repeat: 2
+
+        });
+        this.boy2.scale=0.5
+        this.boy2.flipX=true
+        this.boy.scale-=0.2
+        this.ennemy.scale=0.5
+        this.trap.scale=0.5
+
+
+
+        this.boy.play('boy');
+        this.boy2.play('Eidle');
+        this.ennemy.play('Ennemy')
+        this.trap.play('Trap')
 
 
         //TODO élève faire une animation du même genre que filter mais pour bgAnimationA
@@ -418,18 +469,13 @@ class Tableau1 extends Phaser.Scene{
         //définit à quelles vitesse se déplacent nos différents plans
         bgAnimationA.scrollFactorX=0;
         this.filterFilm.scrollFactorX=0;
+        this.filterRain.scrollFactorX=0;
         this.bg2Container.scrollFactorX=0.2;
         this.bg1Container.scrollFactorX=0.4;
         this.groundContainer.scrollFactorX=1;
 
     }
-    getFrames(prefix,length){
-        let frames=[];
-        for (let i=1;i<=length;i++){
-            frames.push({key: prefix+i});
-        }
-        return frames;
-    }
+
     /**
      * Définit ce qui se passe quand on appuie ou relache une touche du clavier
      * ALGO : ceci est une fonction ou méthode
@@ -445,6 +491,9 @@ class Tableau1 extends Phaser.Scene{
                     break;
                 case Phaser.Input.Keyboard.KeyCodes.LEFT:
                     me.speed=-5;
+                    break;
+                case Phaser.Input.Keyboard.KeyCodes.T:
+                    me.trap.play('Trap');
                     break;
             }
         });
