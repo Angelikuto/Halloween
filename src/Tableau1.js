@@ -453,6 +453,15 @@ class Tableau1 extends Phaser.Scene{
         this.ennemy.play('Ennemy')
         this.trap.play('Trap')
 
+        this.tweens.add({
+            targets: this.ennemy,
+            x: 700,
+            duration: 3000,
+            ease: 'Power2',
+            yoyo: true,
+            delay: 1000
+        })
+
 
         //TODO élève faire une animation du même genre que filter mais pour bgAnimationA
 
@@ -507,6 +516,7 @@ class Tableau1 extends Phaser.Scene{
                     break;
             }
         });
+
     }
 
     /**
